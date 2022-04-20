@@ -1,7 +1,6 @@
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AccountTest {
 
@@ -14,10 +13,26 @@ public class AccountTest {
     }
 
     @Test
+    public void name3charactersTest() {
+        Account account = new Account("a b");
+
+        assertTrue("Name should be more than 3 characters", account.checkNameToEmboss());
+
+    }
+
+    @Test
     public void nameMoreThan19charactersTest() {
         Account account = new Account("Aristarchus Valynets");
 
         assertFalse("Name should not be more than 19 characters", account.checkNameToEmboss());
+
+    }
+
+    @Test
+    public void name19charactersTest() {
+        Account account = new Account("Alexander Ivanovich");
+
+        assertTrue("Name should not be more than 19 characters", account.checkNameToEmboss());
 
     }
 
@@ -61,5 +76,19 @@ public class AccountTest {
 
     }
 
+    @Test
+    public void nameEmpty() {
+        Account account = new Account("");
+
+        assertFalse("Name should have more than 3 characters", account.checkNameToEmboss());
+
+    }
+
+    @Test
+    public void nameWithNull() {
+        Account account = new Account(null);
+
+        assertFalse("Name should not be null", account.checkNameToEmboss());
+    }
 
 }
